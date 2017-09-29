@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+registroabandono<!DOCTYPE html>
 <html>
   <?php require("head.php") ?>
   <body>
