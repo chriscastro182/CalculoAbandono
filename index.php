@@ -1,4 +1,4 @@
-registroabandono<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <?php require("head.php") ?>
   <body>
@@ -25,34 +25,44 @@ registroabandono<!DOCTYPE html>
       <div class="row">
         <div class="col-sm-6">
             <div class="container" style="text-align:left">
-              <h1>Cálculo de mercancía en Abandono</h1>
+              <h1>Captura de mercancía en Abandono</h1>
 
             </div>
         </div>
-        <div class="col-sm-6" style="text-align:right">
-          <div class="well well-lg" >
-            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
-              <b>Guía Master: </b><input type="text" id="campo" name="campo" />
-              <input type="submit" id="enviar" name="enviar" value="Buscar" class="btn btn-info" />
-            </form>
-          </div>
+        <div class="col-sm-6" >
+          <button class="btn btn-lg btn-info btn-block" data-toggle="collapse" data-target="#demo">¿Qué entra dentro del concepto de Mercancía Especial?</button>
+            <div id="demo" class="collapse">
+              <div class="container">
+                <h4>Mercancías Especiales:</h4>
+                <ul>
+                  <li>a) Las contenidas en cajas, contenedores, cartones, rejas y otros empaques y envases, cuyo volumen
+                    sea de más de 5 metros cúbicos.</li>
+                  <li>b) Las que deban guardarse en cajas fuertes o bajo custodia especial.</li>
+                  <li>c) Las explosivas, inflamables, contaminantes, radioactivas y corrosivas</li>
+                  <li>d) Las que por su naturaleza deban conservarse en refrigeración, en cuartos estériles o
+                      en condiciones especiales dentro de los recintos fiscales.</li>
+                  <li>e) Los animales vivos.</li>
+                </ul>
+              </div>
+            </div>
         </div>
       </div>
       <div class="row">
+        <div class="col-sm-10">
           <form  class="form-horizontal" method="POST" action="guardar.php">
               <!-- Aquí van los campos -->
               <div class="container">
                 <table class="table table-bordered table-condensed">
                   <thead>
                     <tr>
-                      <th>Fecha de Ingreso</th>
-                      <th>Guía Master</th>
-                      <th>Guía House</th>
+                      <th>Fecha de <br> Ingreso</th>
+                      <th>GuíaMaster</th>
+                      <th>GuíaHouse</th>
                       <th>Piezas</th>
                       <th>Peso</th>
                       <th>Descripcion</th>
                       <th>Oficio de Aduana</th>
-                      <th>Fecha de Salida</th>
+                      <th>Fecha de <br> Salida</th>
                       <th>Estatus</th>
                       <th>Excepción</th>
                     </tr>
@@ -62,7 +72,7 @@ registroabandono<!DOCTYPE html>
                          <td><input type="date" id="ingreso" name="ingreso" class="form-control" required/></td>
                          <td><input type="text" id="guiaMaster" name="guiaMaster" class="form-control" required/></td>
                          <td><input type="text" id="guiaHouse" name="guiaHouse" class="form-control" required/></td>
-                         <td><input type="number" id="piezas" name="piezas"class="form-control" required/></td>
+                         <td><input type="number" id="piezas" name="piezas"class="form-control" min="1" required/></td>
                          <td><input type="number" name="peso" class="form-control" id="peso" min="1" max="100000" required></td>
                          <td><input type="text" id="descripcion" name="descripcion" class="form-control"/></td>
                          <td><input type="text" id="oficioAduana" name="oficioAduana" class="form-control"/></td>
@@ -80,70 +90,59 @@ registroabandono<!DOCTYPE html>
                       </tr>
                   </tbody>
                 </table>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo">¿Mercancía Especial?</button>
-                      <div id="demo" class="collapse">
-                        <div class="container">
-                          <h4>Mercancías Especiales:</h4>
-                          <ul>
-                            <li>a) Las contenidas en cajas, contenedores, cartones, rejas y otros empaques y envases, cuyo volumen
-                              sea de más de 5 metros cúbicos.</li>
-                            <li>b) Las que deban guardarse en cajas fuertes o bajo custodia especial.</li>
-                            <li>c) Las explosivas, inflamables, contaminantes, radioactivas y corrosivas</li>
-                            <li>d) Las que por su naturaleza deban conservarse en refrigeración, en cuartos estériles o
-                                en condiciones especiales dentro de los recintos fiscales.</li>
-                            <li>e) Los animales vivos.</li>
-                          </ul>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <button class="btn btn-primary btn-block" type="submit">Calcular días</button>
-                  </div>
-                </div>
-
               </div>
           </form>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Calcular y guardar</button>
+        </div>
       </div>
-    <div class="container">
-
-          <!-- Aquí van los campos de la base de datos -->
-          <div class="container">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Fecha de Ingreso</th>
-                  <th>Guía Master</th>
-                  <th>Guía House</th>
-                  <th>Piezas</th>
-                  <th>Peso</th>
-                  <th>Descripcion</th>
-                  <th>Oficio de Aduana</th>
-                  <th>Fecha de Salida</th>
-                  <th>Estatus</th>
-                  <th>Excepción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+      <!-- Tablas que contienten datos -->
+      <div class="row">
+        <div class="col-sm-5">
+            <div class="container">
+              <table class="table table-striped">
+                <thead>
                   <tr>
-                     <td><?php echo $row['f_ingreso']; ?></td>
-                     <td><?php echo $row['guiaMaster']; ?></td>
-                     <td><?php echo $row['guiaHouse']; ?></td>
-                     <td><?php echo $row['piezas']; ?></td>
-                     <td><?php echo $row['peso']; ?></td>
-                     <td><?php echo $row['descripcion']; ?></td>
-                     <td><?php echo $row['oficioAduana']; ?></td>
-                     <td><?php echo $row['f_salida']; ?></td>
-                     <td><?php echo $row['estatus']; ?></td>
-                     <td><?php echo $row['excepcion']; ?></td>
+                    <th>Fecha de Ingreso</th>
+                    <th>Guía Master</th>
+                    <th>Guía House</th>
+                    <th>Piezas</th>
+                    <th>Peso</th>
+                    <th>Descripcion</th>
+                    <th>Oficio de Aduana</th>
+                    <th>Fecha de Salida</th>
+                    <th>Estatus</th>
+                    <th>Excepción</th>
                   </tr>
-                  <?php } ?>
-              </tbody>
-            </table>
-            <button class="btn btn-lg btn-success" type="button" name="button">Generar informe</button>
+                </thead>
+                <tbody>
+              <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                    <tr>
+                        <td><?php echo $row['f_ingreso']; ?></td>
+                        <td><?php echo $row['guiaMaster']; ?></td>
+                        <td><?php echo $row['guiaHouse']; ?></td>
+                        <td><?php echo $row['piezas']; ?></td>
+                        <td><?php echo $row['peso']; ?></td>
+                        <td><?php echo $row['descripcion']; ?></td>
+                        <td><?php echo $row['oficioAduana']; ?></td>
+                        <td><?php echo $row['f_salida']; ?></td>
+                        <td><?php echo $row['estatus']; ?></td>
+                        <td><?php echo $row['excepcion']; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+              </table>
+            </div>
           </div>
-    </div>
+        <div class="col-sm-5">
+
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-lg btn-success" type="button" name="button">Generar informe</button>
+        </div>
+      </div>
+          <!-- Aquí van los campos de la base de datos -->
+
   </body>
 </html>
