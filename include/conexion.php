@@ -3,9 +3,7 @@ $host="localhost";
 $user="root";
 $password="";
 $db="abandono";
-$conn=new mysqli($host,$user,$password);
-if($conn) {
-//  echo '<h1>Connected to MySQL</h1>';
-} else {
-   echo '<h1>MySQL Server is not connected</h1>';
+$mysqli=new mysqli($host,$user,$password, $db);
+if($mysqli->connect_error){
+  die('Error en la conexion' . $mysqli->connect_error);
 } ?>

@@ -58,7 +58,6 @@ function calcTarifa(){
 $sql = "INSERT INTO registroabandono (f_ingreso, guiaMaster, guiaHouse, piezas, peso, descripcion, oficioAduana, f_salida, diasTotales, estatus, derechos, excepcion) VALUES ('$ingreso','$guiaMaster','$guiaHouse','$piezas','$peso','$descripcion','$oficioAduana','$salida','$diasTotales','$estatus','$derechos','$excepcion')";
 
 $resultado = $mysqli->query($sql);
-echo $sql;
 ?>
 
 <html lang="es">
@@ -67,10 +66,7 @@ echo $sql;
   <div class="container">
     <div class="row">
       <div class="row" style="text-align:center">
-        <?php if($resultado) { ?>
-          header( 'Location: index.php' );
-
-          <?php } else { ?>
+        <?php if($resultado) {header( 'Location: index.php' ); } else { ?>
           <h3>ERROR AL GUARDAR</h3>
         <?php } ?>
 

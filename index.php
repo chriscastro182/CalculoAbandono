@@ -5,7 +5,8 @@
     <?php
       require("include/conexion.php");
         require("nav.php");
-          require("funcion.php");?>
+
+          ?>
         <div class="container-fluid">
          <div class="row">
            <img src="image/ban.jpg" class="img-responsive">
@@ -82,6 +83,50 @@
         <li>e) Los animales vivos.</li>
       </ul>
     </div>
+    <div class="container">
 
+          <!-- Aquí van los campos de la base de datos -->
+          <div class="container">
+            <table class="table table-bordered table-condensed">
+              <thead>
+                <tr>
+                  <th>Fecha de Ingreso</th>
+                  <th>Guía Master</th>
+                  <th>Guía House</th>
+                  <th>Piezas</th>
+                  <th>Peso</th>
+                  <th>Descripcion</th>
+                  <th>Oficio de Aduana</th>
+                  <th>Fecha de Salida</th>
+                  <th>Estatus</th>
+                  <th>Excepción</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                     <td><?php  ?></td>
+                     <td><?php  ?></td>
+                     <td><input type="text" id="guiaHouse" name="guiaHouse" class="form-control" required/></td>
+                     <td><input type="number" id="piezas" name="piezas"class="form-control" required/></td>
+                     <td><input type="number" name="peso" class="form-control" id="peso" min="1" max="100000" required></td>
+                     <td><input type="text" id="descripcion" name="descripcion" class="form-control"/></td>
+                     <td><input type="text" id="oficioAduana" name="oficioAduana" class="form-control"/></td>
+                     <td><input type="date" id="salida" name="salida"  class="form-control" required/></td>
+                     <td><select class="form-control" id="estatus" name="estatus">
+                          <option value="Inactivo">Inactivo</option>
+                          <option value="Activo">Activo</option>
+                        </select>
+                    <td><select class="form-control" id="excepcion" name="excepcion" >
+                           <option value="Normal">Normal</option>
+                           <option value="Especial">Especial</option>
+                           <option value="Efectos Personales">Efectos Personales</option>
+                        </select>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          </div>
+    </div>
   </body>
 </html>
