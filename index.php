@@ -24,12 +24,13 @@
        </div>
       <div class="row">
         <div class="col-sm-6">
-            <div class="container">
-              <h3>Abandono</h3>
+            <div class="container" style="text-align:left">
+              <h1>Cálculo de mercancía en Abandono</h1>
+
             </div>
         </div>
-        <div class="col-sm-6">
-          <div class="well well-lg">
+        <div class="col-sm-6" style="text-align:right">
+          <div class="well well-lg" >
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
               <b>Guía Master: </b><input type="text" id="campo" name="campo" />
               <input type="submit" id="enviar" name="enviar" value="Buscar" class="btn btn-info" />
@@ -79,23 +80,32 @@
                       </tr>
                   </tbody>
                 </table>
-                <button class="btn btn-primary" type="submit">Calcular días</button>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo">¿Mercancía Especial?</button>
+                      <div id="demo" class="collapse">
+                        <div class="container">
+                          <h4>Mercancías Especiales:</h4>
+                          <ul>
+                            <li>a) Las contenidas en cajas, contenedores, cartones, rejas y otros empaques y envases, cuyo volumen
+                              sea de más de 5 metros cúbicos.</li>
+                            <li>b) Las que deban guardarse en cajas fuertes o bajo custodia especial.</li>
+                            <li>c) Las explosivas, inflamables, contaminantes, radioactivas y corrosivas</li>
+                            <li>d) Las que por su naturaleza deban conservarse en refrigeración, en cuartos estériles o
+                                en condiciones especiales dentro de los recintos fiscales.</li>
+                            <li>e) Los animales vivos.</li>
+                          </ul>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary btn-block" type="submit">Calcular días</button>
+                  </div>
+                </div>
+
               </div>
           </form>
       </div>
-
-    <div class="container">
-      <h4>Mercancías Especiales:</h4>
-      <ul>
-        <li>a) Las contenidas en cajas, contenedores, cartones, rejas y otros empaques y envases, cuyo volumen
-          sea de más de 5 metros cúbicos.</li>
-        <li>b) Las que deban guardarse en cajas fuertes o bajo custodia especial.</li>
-        <li>c) Las explosivas, inflamables, contaminantes, radioactivas y corrosivas</li>
-        <li>d) Las que por su naturaleza deban conservarse en refrigeración, en cuartos estériles o
-            en condiciones especiales dentro de los recintos fiscales.</li>
-        <li>e) Los animales vivos.</li>
-      </ul>
-    </div>
     <div class="container">
 
           <!-- Aquí van los campos de la base de datos -->
@@ -132,7 +142,7 @@
                   <?php } ?>
               </tbody>
             </table>
-
+            <button class="btn btn-lg btn-success" type="button" name="button">Generar informe</button>
           </div>
     </div>
   </body>
