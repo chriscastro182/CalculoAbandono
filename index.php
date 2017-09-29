@@ -5,7 +5,17 @@
     <?php
       require("include/conexion.php");
         require("nav.php");
+        $where = "";
 
+        if(!empty($_POST))
+        {
+          $valor = $_POST['campo'];
+          if(!empty($valor)){
+            $where = "WHERE guiaMaster LIKE '%$valor'";
+          }
+        }
+        $sql = "SELECT * FROM registroabandono $where";
+        $resultado = $mysqli->query($sql);
           ?>
         <div class="container-fluid">
          <div class="row">
@@ -20,7 +30,10 @@
         </div>
         <div class="col-sm-6">
           <div class="well well-lg">
-
+            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+              <b>Guía Master: </b><input type="text" id="campo" name="campo" />
+              <input type="submit" id="enviar" name="enviar" value="Buscar" class="btn btn-info" />
+            </form>
           </div>
         </div>
       </div>
@@ -87,7 +100,7 @@
 
           <!-- Aquí van los campos de la base de datos -->
           <div class="container">
-            <table class="table table-bordered table-condensed">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Fecha de Ingreso</th>
@@ -103,26 +116,20 @@
                 </tr>
               </thead>
               <tbody>
+                <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
                   <tr>
-                     <td><?php  ?></td>
-                     <td><?php  ?></td>
-                     <td><input type="text" id="guiaHouse" name="guiaHouse" class="form-control" required/></td>
-                     <td><input type="number" id="piezas" name="piezas"class="form-control" required/></td>
-                     <td><input type="number" name="peso" class="form-control" id="peso" min="1" max="100000" required></td>
-                     <td><input type="text" id="descripcion" name="descripcion" class="form-control"/></td>
-                     <td><input type="text" id="oficioAduana" name="oficioAduana" class="form-control"/></td>
-                     <td><input type="date" id="salida" name="salida"  class="form-control" required/></td>
-                     <td><select class="form-control" id="estatus" name="estatus">
-                          <option value="Inactivo">Inactivo</option>
-                          <option value="Activo">Activo</option>
-                        </select>
-                    <td><select class="form-control" id="excepcion" name="excepcion" >
-                           <option value="Normal">Normal</option>
-                           <option value="Especial">Especial</option>
-                           <option value="Efectos Personales">Efectos Personales</option>
-                        </select>
-                    </td>
+                     <td><?php echo $row['f_ingreso']; ?></td>
+                     <td><?php echo $row['guiaMaster']; ?></td>
+                     <td><?php echo $row['guiaHouse']; ?></td>
+                     <td><?php echo $row['piezas']; ?></td>
+                     <td><?php echo $row['peso']; ?></td>
+                     <td><?php echo $row['descripcion']; ?></td>
+                     <td><?php echo $row['oficioAduana']; ?></td>
+                     <td><?php echo $row['f_salida']; ?></td>
+                     <td><?php echo $row['estatus']; ?></td>
+                     <td><?php echo $row['excepcion']; ?></td>
                   </tr>
+                  <?php } ?>
               </tbody>
             </table>
 
