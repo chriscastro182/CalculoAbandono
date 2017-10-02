@@ -10,11 +10,11 @@
         if(!empty($_POST)){
           $valor = $_POST['campo'];
           if(!empty($valor)){
-            $where = "where guiaMaster LIKE '%$valor';";
+            $where = "where idRegistroAbandono = $valor;";
           }
         }
         $sql = "SELECT * FROM registroabandono $where";
-        echo $sql;
+
         $resultado = $mysqli->query($sql);
           ?>
         <div class="container-fluid">
@@ -32,7 +32,7 @@
         <div class="col-sm-6" style="text-align:right">
           <div class="well well-lg" >
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
-              <b>Guía Master: </b><input type="text" id="campo" name="campo" />
+              <b>Consecutivo: </b><input type="number" id="campo" name="campo" />
               <input type="submit" id="enviar" name="enviar" value="Buscar" class="btn btn-info" />
             </form>
           </div>
@@ -80,7 +80,7 @@
               </tbody>
             </table>
             <a href="informePdf.php" class="btn btn-lg btn-danger" type="button" name="pdfbtn">Generar informe en PDF</a>
-            <a href="informeExcel.php" class="btn btn-lg btn-success" type="button" name="excel">Generar EXCEL</a>
+            <a href="informeExcel.php" class="btn btn-lg btn-success" type="button" name="excel">Descargar informe en EXCEL</a>
           </div>
     </div>
   </body>
