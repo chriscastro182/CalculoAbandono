@@ -11,7 +11,7 @@
    <div class="collapse navbar-collapse" id="myNavbar">
      <ul class="nav navbar-nav">
        <li class="active"><a href="index.php">Home</a></li>
-       <li><a href="calculoAbandono.php">Cálculo de Abandono</a></li>
+       <li><a href="index.php">Cálculo de Abandono</a></li>
        <li><a href="generarInformes.php">Generar Informes</a></li>
      </ul>
 

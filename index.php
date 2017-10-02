@@ -64,7 +64,7 @@
                       <th>Oficio de Aduana</th>
                       <th>Fecha de <br> Salida</th>
                       <th>Estatus</th>
-                      <th>Excepción</th>
+                      <th>Tipo de mercancía</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,11 +91,13 @@
                   </tbody>
                 </table>
               </div>
-          </form>
+
+
         </div>
         <div class="col-sm-2">
           <button class="btn btn-lg btn-primary btn-block" type="submit">Calcular y guardar</button>
         </div>
+        </form>
       </div>
       <!-- Tablas que contienten datos -->
       <div class="row">
@@ -112,23 +114,27 @@
                     <th>Descripcion</th>
                     <th>Oficio de Aduana</th>
                     <th>Fecha de Salida</th>
+                    <th>Total de días</th>
                     <th>Estatus</th>
-                    <th>Excepción</th>
+                    <th>Derechos</th>
+                    <th>Tipo de mercancía</th>
                   </tr>
                 </thead>
                 <tbody>
               <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
                     <tr>
-                        <td><?php echo $row['f_ingreso']; ?></td>
-                        <td><?php echo $row['guiaMaster']; ?></td>
-                        <td><?php echo $row['guiaHouse']; ?></td>
-                        <td><?php echo $row['piezas']; ?></td>
-                        <td><?php echo $row['peso']; ?></td>
-                        <td><?php echo $row['descripcion']; ?></td>
-                        <td><?php echo $row['oficioAduana']; ?></td>
-                        <td><?php echo $row['f_salida']; ?></td>
-                        <td><?php echo $row['estatus']; ?></td>
-                        <td><?php echo $row['excepcion']; ?></td>
+                      <td><?php echo $row['f_ingreso']; ?></td>
+                      <td><?php echo $row['guiaMaster']; ?></td>
+                      <td><?php echo $row['guiaHouse']; ?></td>
+                      <td><?php echo $row['piezas']; ?></td>
+                      <td><?php echo $row['peso']; ?></td>
+                      <td><?php echo $row['descripcion']; ?></td>
+                      <td><?php echo $row['oficioAduana']; ?></td>
+                      <td><?php echo $row['f_salida']; ?></td>
+                      <td><?php echo $row['diasTotales']; ?></td>
+                      <td><?php echo $row['estatus']; ?></td>
+                      <td><?php echo $row['derechos']; ?></td>
+                      <td><?php echo $row['excepcion']; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -139,7 +145,7 @@
 
         </div>
         <div class="col-sm-2">
-          <button class="btn btn-lg btn-success" type="button" name="button">Generar informe</button>
+          <a href="generarInformes.php" class="btn btn-lg btn-success" type="button" name="button">Generar informe</a>
         </div>
       </div>
           <!-- Aquí van los campos de la base de datos -->

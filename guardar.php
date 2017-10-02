@@ -55,7 +55,8 @@ function calcTarifa(){
     return 36.20;
   }
 }
-$sql = "INSERT INTO registroabandono (f_ingreso, guiaMaster, guiaHouse, piezas, peso, descripcion, oficioAduana, f_salida, diasTotales, estatus, derechos, excepcion) VALUES ('$ingreso','$guiaMaster','$guiaHouse','$piezas','$peso','$descripcion','$oficioAduana','$salida','$diasTotales','$estatus','$derechos','$excepcion')";
+$sql = "INSERT INTO registroabandono (f_ingreso, guiaMaster, guiaHouse, piezas, peso, descripcion, oficioAduana, f_salida, diasTotales, estatus, derechos, excepcion)
+                        VALUES ('$ingreso','$guiaMaster','$guiaHouse','$piezas','$peso','$descripcion','$oficioAduana','$salida','$diasTotales','$estatus','$derechos','$excepcion')";
 
 $resultado = $mysqli->query($sql);
 ?>
@@ -66,7 +67,13 @@ $resultado = $mysqli->query($sql);
   <div class="container">
     <div class="row">
       <div class="row" style="text-align:center">
-        <?php if($resultado) {header( 'Location: index.php' ); } else { ?>
+
+        <?php if($resultado) {
+          echo '<script type="text/javascript">MensajeExito()</script>';
+          ?>
+          <div id="snackbar">Registro Guardado Exitosamente</div>
+          <?php
+          header( 'Location: index.php' ); } else { ?>
           <h3>ERROR AL GUARDAR</h3>
         <?php } ?>
 
@@ -75,5 +82,15 @@ $resultado = $mysqli->query($sql);
       </div>
     </div>
   </div>
+
+
+
+  <script>
+  function MensajeExito() {
+      var x = document.getElementById("snackbar")
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  </script>
 </body>
 </html>

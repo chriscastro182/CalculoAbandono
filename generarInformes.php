@@ -7,14 +7,14 @@
         require("nav.php");
         $where = "";
 
-        if(!empty($_POST))
-        {
+        if(!empty($_POST)){
           $valor = $_POST['campo'];
           if(!empty($valor)){
-            $where = "WHERE guiaMaster LIKE '%$valor'";
+            $where = "where guiaMaster LIKE '%$valor';";
           }
         }
         $sql = "SELECT * FROM registroabandono $where";
+        echo $sql;
         $resultado = $mysqli->query($sql);
           ?>
         <div class="container-fluid">
@@ -54,8 +54,10 @@
                   <th>Descripcion</th>
                   <th>Oficio de Aduana</th>
                   <th>Fecha de Salida</th>
+                  <th>Total de días</th>
                   <th>Estatus</th>
-                  <th>Excepción</th>
+                  <th>Derechos</th>
+                  <th>Tipo de mercancía</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,13 +71,16 @@
                      <td><?php echo $row['descripcion']; ?></td>
                      <td><?php echo $row['oficioAduana']; ?></td>
                      <td><?php echo $row['f_salida']; ?></td>
+                     <td><?php echo $row['diasTotales']; ?></td>
                      <td><?php echo $row['estatus']; ?></td>
+                     <td><?php echo $row['derechos']; ?></td>
                      <td><?php echo $row['excepcion']; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
             </table>
-            <button class="btn btn-lg btn-success" type="button" name="button">Generar informe</button>
+            <a href="informePdf.php" class="btn btn-lg btn-danger" type="button" name="pdfbtn">Generar informe en PDF</a>
+            <a href="informeExcel.php" class="btn btn-lg btn-success" type="button" name="excel">Generar EXCEL</a>
           </div>
     </div>
   </body>

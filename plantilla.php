@@ -5,7 +5,7 @@
 	{
 		function Header()
 		{
-			$this->Image('image/logo.png', 5, 5, 30 );
+			$this->Image('image/logo.png', 5, 5, 18 );
 			$this->SetFont('Arial','B',15);
 			$this->Cell(30);
 			$this->Cell(120,10, 'Reporte De Abandono',0,0,'C');
